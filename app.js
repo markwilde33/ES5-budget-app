@@ -22,6 +22,30 @@ var budgetController = (function () {
          inc: 0
       }
    };
+
+   return {
+      addItem: function (type, des, val) {
+         var newItem;
+
+         // create a new ID
+         ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+
+         // create a new item based on 'inc' or 'exp' type
+         if (type === 'exp') {
+            newItem = new Expense(ID, des, val);
+         } else if (type === 'inc') {
+            newItem = new Income(ID, des, val);
+         }
+
+         // add the newItem to the relevant array in the data object
+         data.allItems[type].push(newItem);
+
+         // return the newItem so that it can be accessed elsewhere
+         return newItem;
+
+      }
+   };
+
 })();
 
 // UI CONTROLLER
