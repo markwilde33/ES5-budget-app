@@ -74,16 +74,19 @@ var UIController = (function () {
       },
 
       addListItem: function (obj, type) {
-
+         var html, newHtml;
          // create HTML string with placeholder text
 
          if (type === 'inc') {
-            html = '<div class="item clearfix" id="income-0"> <div class="item__description" >Salary</div><div class= "right clearfix"><div class="item__value"> +2, 100.00 </div><div class="item__delete"><button class ="item__delete--btn"><i class="ion-ios-close-outline"><i></button></div></div></div>';
+            html = '<div class="item clearfix" id="income-%id%"> <div class="item__description" >%description%</div><div class= "right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class ="item__delete--btn"><i class="ion-ios-close-outline"><i></button></div></div></div>';
          } else if (type === 'exp') {
-            html = '<div class="item clearfix" id="expense-0"> <div class="item__description">Apartment rent</div> <div class="right clearfix"> <div class="item__value">- 900.00</div> <div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description">$description$</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
          }
 
          // replace the placeholder text with dynamic data (user input)
+         newHtml = html.replace('%id%', obj.id);
+         newHtml = newHtml.replace('%description%', obj.description);
+         newHtml = newHtml.replace('%value%', obj.value);
 
          // insert the HTML into the DOM
       },
